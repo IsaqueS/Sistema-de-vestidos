@@ -9,7 +9,7 @@ from client import Client
 
 class Rental:
 
-    def __init__(self, date: datetime, wait_time: datetime, products: list[Suit], suppliers: list[Supplier], client: Client) -> None:
+    def __init__(self, date: datetime, wait_time: datetime, products: list[Suit], client: Client) -> None:
         self.__date = None
         if isinstance(date, datetime):
             self.__date = date
@@ -19,9 +19,6 @@ class Rental:
         self.__wait_time = None
         if isinstance(wait_time, datetime):
             self.__wait_time = wait_time
-        self.__suppliers = None
-        if isinstance(suppliers, list[Supplier]):
-            self.__date = date
         self.__client = None
         if isinstance(client, Client):
             self.__client = client
@@ -48,13 +45,6 @@ class Rental:
     def add_product(self, product: Suit) -> None:
         if isinstance(product,Suit):
             self.__products.append(product)
-    
-    def suppliers(self) -> list[Supplier]:
-        return self.__suppliers
-
-    def add_supplier(self, supplier: Supplier) -> None:
-        if isinstance(supplier,Supplier):
-            self.__suppliers.append(supplier)
     
     def client(self) -> Client:
         return self.__client
