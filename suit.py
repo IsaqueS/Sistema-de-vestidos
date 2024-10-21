@@ -1,7 +1,7 @@
 from supplier import Supplier
 from decimal import *
 
-class Suits:
+class Suit:
 
     def __init__(self, code: str, description: str, size: int, supplier: Supplier, purchase_price: Decimal, selling_price: Decimal) -> None:
         self.__code = None
