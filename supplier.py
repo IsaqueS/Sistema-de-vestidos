@@ -1,8 +1,12 @@
 import datetime
 
-class Supplier:
+from person import Person
+
+
+class Supplier(Person):
 
     def __init__(self, name: str, number: int, email: str, contact: str, cnpj: int, address: str, website: str) -> None:
+        super().__init__(name, number, email)
         self.__name = None
         if isinstance(name, str):
             self.__name = name
@@ -25,30 +29,7 @@ class Supplier:
         if isinstance(website, str):
             self.__website = website
 
-    def name(self) -> str:
-        return self.__name
-    
-    @name.setter
-    def name(self, name: str) -> None:
-        if isinstance(name, str):
-            self.__name = name
-
-    def number(self) -> int:
-        return self.__number
-    
-    @number.setter
-    def number(self, number: int) -> None:
-        if isinstance(number, int):
-            self.__number = number
-
-    def email(self) -> str:
-        return self.__email
-    
-    @email.setter
-    def email(self, email: str) -> None:
-        if isinstance(email, str):
-            self.__email = email
-    
+    @property
     def contact(self) -> str:
         return self.__contact
     
@@ -56,7 +37,7 @@ class Supplier:
     def contact(self, contact: str) -> None:
         if isinstance(contact, str):
             self.__contact = contact
-    
+    @property
     def cnpj(self) -> int:
         return self.__cnpj
     
@@ -64,7 +45,7 @@ class Supplier:
     def cnpj(self, cnpj: int) -> None:
         if isinstance(cnpj, int):
             self.__cnpj = cnpj
-
+    @property
     def address(self) -> str:
         return self.__address
     
@@ -72,7 +53,7 @@ class Supplier:
     def address(self, address: str) -> None:
         if isinstance(address, str):
             self._address = address
-
+    @property
     def website(self) -> str:
         return self.__website
     
