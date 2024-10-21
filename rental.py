@@ -1,6 +1,6 @@
 import datetime
 from supplier import Supplier
-from product import Product
+from suit import Suit
 from client import Client
 
 #CLASSE DE AGENDA PODE SER REFEITA, PARA ATENDER MELHOR OS REQUISITOS
@@ -9,12 +9,12 @@ from client import Client
 
 class Rental:
 
-    def __init__(self, date: datetime, wait_time: datetime, products: list[Product], suppliers: list[Supplier], client: Client) -> None:
+    def __init__(self, date: datetime, wait_time: datetime, products: list[Suit], suppliers: list[Supplier], client: Client) -> None:
         self.__date = None
         if isinstance(date, datetime):
             self.__date = date
         self.__products = None
-        if isinstance(products, list[Product]):
+        if isinstance(products, list[Suit]):
             self.__products
         self.__wait_time = None
         if isinstance(wait_time, datetime):
@@ -42,11 +42,11 @@ class Rental:
         if isinstance(wait_time, datetime):
             self.__wait_time = wait_time
     
-    def products(self) -> list[Product]:
+    def products(self) -> list[Suit]:
         return self.__products
 
-    def add_product(self, product: Product) -> None:
-        if isinstance(product,Product):
+    def add_product(self, product: Suit) -> None:
+        if isinstance(product,Suit):
             self.__products.append(product)
     
     def suppliers(self) -> list[Supplier]:
