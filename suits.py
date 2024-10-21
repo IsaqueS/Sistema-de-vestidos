@@ -1,7 +1,7 @@
 from supplier import Supplier
 from decimal import *
 
-class Product:
+class Suits:
 
     def __init__(self, code: str, description: str, size: int, supplier: Supplier, purchase_price: Decimal, selling_price: Decimal) -> None:
         self.__code = None
@@ -22,7 +22,7 @@ class Product:
         self.__selling_price = None
         if isinstance(selling_price, Decimal):
             self.__selling_price = selling_price
-    
+    @property
     def code(self) -> str:
         return self.__code
     
@@ -30,7 +30,7 @@ class Product:
     def code(self, code: str) -> None:
         if isinstance(code, str):
             self.__code = code
-    
+    @property
     def description(self) -> str:
         return self.__descripion
     
@@ -38,7 +38,7 @@ class Product:
     def description(self, description: str) -> None:
         if isinstance(description , str):
             self.__descripion = description
-    
+    @property
     def size(self) -> int:
         return self.__size
     
@@ -50,7 +50,7 @@ class Product:
     @size.__str__
     def get_size_as_str(self) -> str:
         print("IMPLEMENT FEATURE HERE!")
-
+    @property
     def supplier(self) -> Supplier:
         return self.__supplier
     
@@ -58,7 +58,7 @@ class Product:
     def supplier(self, supplier: Supplier) -> None:
         if isinstance(supplier, Supplier):
             self.__supplier = supplier
-
+    @property
     def purchase_price(self) -> Decimal:
         return self.__purchase_price
     
@@ -66,7 +66,7 @@ class Product:
     def purchase_price(self, purchase_price: Decimal) -> None:
         if isinstance(purchase_price, Decimal):
             self.__purchase_price = purchase_price
-
+    @property
     def selling_price(self) -> Decimal:
         return self.__selling_price
     
