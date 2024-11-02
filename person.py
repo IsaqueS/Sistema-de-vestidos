@@ -1,4 +1,6 @@
-class Person:
+from abc import ABC, abstractmethod
+class Person(ABC):
+    @abstractmethod
     def __init__(self, name: str, number: int, email: str) -> None:
         self.__name = None
         if isinstance(name, str):
