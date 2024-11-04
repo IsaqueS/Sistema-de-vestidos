@@ -7,15 +7,6 @@ class Supplier(Person):
 
     def __init__(self, name: str, number: int, email: str, contact: str, cnpj: int, address: str, website: str) -> None:
         super().__init__(name, number, email)
-        self.__name = None
-        if isinstance(name, str):
-            self.__name = name
-        self.__number = None
-        if isinstance(number, int):
-            self.__number = number
-        self.__email = None
-        if isinstance(email, str):
-            self.__email = email
         self.__contact = None
         if isinstance(contact, str):
             self.__contact = contact
