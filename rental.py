@@ -4,22 +4,24 @@ from suit import Suit
 from client import Client
 from random import randint
 
+
+
 class Rental:
 
     def __init__(self, date: datetime, wait_time: datetime, products: list, client: Client) -> None:
         self.__rent_code = randint(0, 2000000)
-        self.__date = None
+        #self.__date = None
         #if isinstance(date, datetime):
-            #self.__date = date
-        self.__products = None
-        if isinstance(products, list):
-            self.__products
-        self.__wait_time = None
+        self.__date = date
+        #self.__products = None
+        #if isinstance(products, list):
+        self.__products = products
+        #self.__wait_time = None
         #if isinstance(wait_time, datetime):
-            #self.__wait_time = wait_time
-        self.__client = None
-        if isinstance(client, Client):
-            self.__client = client
+        self.__wait_time = wait_time
+        #self.__client = None
+        #if isinstance(client, Client):
+        self.__client = client
 
     @property
     def rent_code(self) -> int:
