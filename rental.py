@@ -4,10 +4,6 @@ from suit import Suit
 from client import Client
 from random import randint
 
-#CLASSE DE AGENDA PODE SER REFEITA, PARA ATENDER MELHOR OS REQUISITOS
-
-#Ainda não temos uma forma boa de organizar os dados por data
-
 class Rental:
 
     def __init__(self, date: datetime, wait_time: datetime, products: list, client: Client) -> None:
