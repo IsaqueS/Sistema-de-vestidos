@@ -32,7 +32,6 @@ def Rental_menu():
             wait_time = datetime.datetime(int(input("Year of return: ")), int(input("Month of return: ")), int(input("Day of return: ")))
             products = []
             client = input("Please insert the client's name: ")
-
             for i in range(len(data_base)):
                 check_client = data_base[i]
                 if client == check_client.name:
@@ -60,5 +59,5 @@ def Rental_menu():
     Date: {date}
     Wait_time: {wait_time}
     Products: {products}
-    Client: {client}'''.format(rent_code = d.rent_code, date = d.date, wait_time = d.wait_time, products = d.products, client = d.client)
+    Client: {client}'''.format(rent_code=d.rent_code, date=d.date, wait_time=d.wait_time, products=d.products, client=d.client)
                 print(data)
