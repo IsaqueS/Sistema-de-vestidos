@@ -3,7 +3,7 @@ from decimal import *
 
 class Suit:
 
-    def __init__(self, code: str, description: str, size: int, supplier: Supplier, purchase_price: Decimal, selling_price: Decimal) -> None:
+    def __init__(self, code: str, description: str, size: int, supplier: str, purchase_price: float, selling_price: float) -> None:
         self.__code = None
         if isinstance(code, str):
             self.__code = code
@@ -14,13 +14,13 @@ class Suit:
         if isinstance(size, int):
             self.__size = size
         self.__supplier = None
-        if isinstance(supplier, Supplier):
+        if isinstance(supplier, str):
             self.__supplier = supplier
         self.__purchase_price = None
-        if isinstance(purchase_price, Decimal):
+        if isinstance(purchase_price, float):
             self.__purchase_price = purchase_price
         self.__selling_price = None
-        if isinstance(selling_price, Decimal):
+        if isinstance(selling_price, float):
             self.__selling_price = selling_price
     @property
     def code(self) -> str:
@@ -46,31 +46,28 @@ class Suit:
     def size(self, size: int) -> None:
         if isinstance(size, int):
             self.__size = size
-    
-    @size.__str__
-    def get_size_as_str(self) -> str:
-        print("IMPLEMENT FEATURE HERE!")
+
     @property
-    def supplier(self) -> Supplier:
+    def supplier(self) -> str:
         return self.__supplier
     
     @supplier.setter
     def supplier(self, supplier: Supplier) -> None:
-        if isinstance(supplier, Supplier):
+        if isinstance(supplier, str):
             self.__supplier = supplier
     @property
-    def purchase_price(self) -> Decimal:
+    def purchase_price(self) -> float:
         return self.__purchase_price
     
     @purchase_price.setter
-    def purchase_price(self, purchase_price: Decimal) -> None:
-        if isinstance(purchase_price, Decimal):
+    def purchase_price(self, purchase_price: float) -> None:
+        if isinstance(purchase_price, float):
             self.__purchase_price = purchase_price
     @property
-    def selling_price(self) -> Decimal:
+    def selling_price(self) -> float:
         return self.__selling_price
     
     @selling_price.setter
-    def purchase_price(self, selling_price: Decimal) -> None:
-        if isinstance(selling_price, Decimal):
+    def purchase_price(self, selling_price: float) -> None:
+        if isinstance(selling_price, float):
             self.__selling_price = selling_price
