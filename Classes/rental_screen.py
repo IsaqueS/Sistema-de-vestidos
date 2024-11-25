@@ -1,7 +1,7 @@
 import datetime
-from rental import Rental
-from client_screen import data_base
-from product_screen import product_data_base
+from .rental import Rental
+from .client_screen import data_base
+from .product_screen import product_data_base
 
 input_text = '''1. Rent product
 2. Return product

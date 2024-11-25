@@ -1,4 +1,4 @@
-from supplier import Supplier
+from .supplier import Supplier
 from decimal import *
 
 class Suit:

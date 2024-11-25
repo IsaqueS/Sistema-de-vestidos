@@ -1,7 +1,7 @@
 import datetime
-from supplier import Supplier
-from suit import Suit
-from client import Client
+from .supplier import Supplier
+from .suit import Suit
+from .client import Client
 from random import randint
 
 

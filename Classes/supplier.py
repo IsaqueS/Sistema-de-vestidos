@@ -1,6 +1,6 @@
 import datetime
 
-from person import Person
+from .person import Person
 
 
 class Supplier(Person):

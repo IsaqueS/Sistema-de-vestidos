@@ -1,4 +1,4 @@
-from supplier import Supplier
+from .supplier import Supplier
 
 imput_text = '''1. Add supplier
 2. Remove supplier

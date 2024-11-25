@@ -1,7 +1,7 @@
-import client_screen
-import rental_screen
-import supplier_screen
-import product_screen
+from Classes import client_screen
+from Classes import rental_screen
+from Classes import supplier_screen
+from Classes import product_screen
 
 input_text = '''1. Clients
 2. Suppliers
