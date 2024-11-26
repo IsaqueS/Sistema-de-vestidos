@@ -1,7 +1,7 @@
-from Classes import client_screen
-from Classes import rental_screen
-from Classes import supplier_screen
-from Classes import product_screen
+from DataBackend import client_screen
+from DataBackend import rental_screen
+from DataBackend import supplier_screen
+from DataBackend import product_screen
 
 input_text = '''1. Clients
 2. Suppliers
