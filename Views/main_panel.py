@@ -1,32 +1,36 @@
 import flet as ft
 from Translations.translation_server import tr
-from main import App
+from Views.view_template import ViewTemplate
 
-class MainPanel:
-    def __init__(self, app: App) -> None:
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app import App
+
+class MainPanel(ViewTemplate):
+    def __init__(self, app: "App") -> None:
+        super().__init__(app)
+        
         self.__search_icon_size: int = 25
 
-        self.__view: ft.View = ft.View(
-            route="/"
+        self.view: ft.View = ft.View(
+            route="/",
         )
 
-        self.__page = app.page
-        self.__app = app
+        self.setup_view()
 
-        app.page.views.append(self.setup_view(self.__view))
-
-    @property
-    def view(self) -> ft.View:
-        return self.__view
+    # @property
+    # def view(self) -> ft.View:
+    #     return self.__view
         
     def change_to_full_screen(self, args: ft.ControlEvent) -> None:
-        self.__page.window.full_screen = not self.__page.window.full_screen
+        self.app.page.window.full_screen = not self.app.page.window.full_screen
         self.update_fullscreen_button()
 
-        self.__page.update()
+        self.app.page.update()
     
     def update_fullscreen_button(self) -> None:
-        if not self.__page.window.full_screen:
+        if not self.app.page.window.full_screen:
             self.full_screen_item_button.icon = ft.icons.FULLSCREEN
             self.full_screen_item_button.text = tr("fullscreen_button")
         else:
@@ -35,12 +39,13 @@ class MainPanel:
     
     def open_more_options_menu_update(self, args: ft.ControlEvent) -> None:    
         self.update_fullscreen_button()
-        self.__page.update()
+        self.app.page.update()
 
 
 
-    def setup_view(self, view: ft.View) -> ft.View:
-        
+    def setup_view(self) -> ft.View:
+        super().setup_view()
+
         # Creating the Title Bar
         self.title: ft.Text = ft.Text(
             tr("title"),
@@ -52,6 +57,7 @@ class MainPanel:
         self.manual_button: ft.TextButton = ft.TextButton(
             icon=ft.icons.BOOK,
             text=tr("manual"),
+            on_click = self.app.go_to_manual
         )
 
         self.backup_button: ft.TextButton = ft.TextButton(
@@ -198,11 +204,11 @@ class MainPanel:
             expand=1,
         )
 
-        view.controls.append(self.title_bar)
-        view.controls.append(self.action_row)
-        view.controls.append(self.categories_tab)
+        self.view.controls.append(self.title_bar)
+        self.view.controls.append(self.action_row)
+        self.view.controls.append(self.categories_tab)
 
-        return view
+        return self.view
         
 
         
