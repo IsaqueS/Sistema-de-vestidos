@@ -1,6 +1,6 @@
 import datetime
 
-from .client import Client
+from Classes.client import Client
 input_text = '''1. Add client
 2. Remove client
 3. View client list
