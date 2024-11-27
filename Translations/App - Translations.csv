@@ -1,0 +1,20 @@
+key,en,pt
+key,Key,Chave
+hello,Hello!,Oi!
+title,Title,Titulo
+search_bar_tip,Start typing to search or to insert an new item...,Comece a digitar para pesquisar ou para inseir um item...
+search_button_tip,Search on database,Procurar no sistema
+add_button_tip,Add an new item,Adicionar um novo item
+clients,Clients,Clientes
+suppliers,Suppliers,Fornecedores
+stock,Stock,Estoque
+stock_with_name,{name} stock,Estoque de {name}
+rentals,Rentals,Alugueis
+analytics,Analytics,Analitícas
+manual,Manual,Manual
+manage_backups,Manage backups,Gerenciar backups
+fullscreen_button,Fullscreen (F11),Tela cheia (F11)
+app_info,App info,Informações do aplicativo
+settings,Settings,Configurações
+more_options,More options,Mais opções
+exit_fullscreen_button,Exit fullscreen (F11),Sair da tela cheia (F11)

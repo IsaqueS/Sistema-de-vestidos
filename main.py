@@ -1,4 +1,5 @@
 import flet as ft
+from Translations.translation_server import tr, translate
 
 from Views import *
 
@@ -11,26 +12,41 @@ class App:
     def run(self) -> None:
         ft.app(self.main)
     
-    def initial_window_setup(self, page: ft.Page):
-        page.title = self.__window_title
-        page.vertical_alignment = ft.MainAxisAlignment.START
-        page.theme_mode=ft.ThemeMode.DARK
-        page.window.min_width = 700
-        page.window.min_height = 500
+    def initial_window_setup(self):
+        self.page.title = self.__window_title
+        self.page.vertical_alignment = ft.MainAxisAlignment.START
+        self.page.theme_mode=ft.ThemeMode.DARK
+        self.page.window.min_width = 700
+        self.page.window.min_height = 500
         
-        page.views.clear()
+        self.page.views.clear()
+    
+    def load_views(self) -> None:
+        self.main_view = MainPanel(self)
 
     def main(self, page: ft.Page) -> None:
         
-        self.initial_window_setup(page)
+        self.page = page
 
-
-        main_view = MainPanel(page)
+        self.initial_window_setup()
         
+        self.load_views()
 
+        page.on_keyboard_event = self.global_keyboard_events
         page.go("/")
-        print(page.views)
+
+    
+    def global_keyboard_events(self, event: ft.KeyboardEvent) -> None:
+        match event.key:
+            case "F11":
+                self.page.window.full_screen = not self.page.window.full_screen
+                self.page.update()
+
+                
 
 if __name__ == "__main__":
+    # translate.set_language("en")
+    # print(tr("settings"))
+    
     app = App()
     app.run()

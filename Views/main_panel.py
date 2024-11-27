@@ -1,24 +1,49 @@
 import flet as ft
+from Translations.translation_server import tr
+from main import App
 
 class MainPanel:
-    def __init__(self, page: ft.Page) -> None:
+    def __init__(self, app: App) -> None:
         self.__search_icon_size: int = 25
 
         self.__view: ft.View = ft.View(
             route="/"
         )
 
-        self.current_page = page
+        self.__page = app.page
+        self.__app = app
 
-        page.views.append(self.setup_view(self.__view))
+        app.page.views.append(self.setup_view(self.__view))
 
+    @property
+    def view(self) -> ft.View:
+        return self.__view
         
+    def change_to_full_screen(self, args: ft.ControlEvent) -> None:
+        self.__page.window.full_screen = not self.__page.window.full_screen
+        self.update_fullscreen_button()
+
+        self.__page.update()
     
+    def update_fullscreen_button(self) -> None:
+        if not self.__page.window.full_screen:
+            self.full_screen_item_button.icon = ft.icons.FULLSCREEN
+            self.full_screen_item_button.text = tr("fullscreen_button")
+        else:
+            self.full_screen_item_button.icon = ft.icons.FULLSCREEN_EXIT
+            self.full_screen_item_button.text = tr("exit_fullscreen_button")
+    
+    def open_more_options_menu_update(self, args: ft.ControlEvent) -> None:    
+        self.update_fullscreen_button()
+        self.__page.update()
+
+
+
     def setup_view(self, view: ft.View) -> ft.View:
         
         # Creating the Title Bar
         self.title: ft.Text = ft.Text(
-            "Titulo",
+            tr("title"),
             weight=ft.FontWeight.BOLD,
             overflow=ft.TextOverflow.ELLIPSIS,
             size=28
@@ -26,27 +51,42 @@ class MainPanel:
 
         self.manual_button: ft.TextButton = ft.TextButton(
             icon=ft.icons.BOOK,
-            text="Manual",
+            text=tr("manual"),
         )
 
         self.backup_button: ft.TextButton = ft.TextButton(
             icon=ft.icons.FOLDER_SHARED,
-            text="Gerenciar Backups"
+            text=tr("manage_backups")
         )
 
         self.settings_button: ft.Icon = ft.Icon(
             name=ft.icons.MORE_VERT,
-            tooltip="Configurações do aplicativo"
+            tooltip=tr("more_options")
+        )
+
+        self.full_screen_item_button: ft.PopupMenuItem = ft.PopupMenuItem(
+                    text= tr("fullscreen_button"),
+                    icon=ft.icons.FULLSCREEN,
+                    on_click=self.change_to_full_screen
+                )
+        
+        self.app_info_button: ft.PopupMenuItem = ft.PopupMenuItem(
+            text= tr("app_info"),
+            icon=ft.icons.INFO,
+            on_click= lambda x: print("Info Button was pressed, Functionalty needs to be done!"),
         )
 
         self.options_button:ft.PopupMenuButton = ft.PopupMenuButton(
             content = self.settings_button,
             items=[
-                ft.PopupMenuItem(text= "Tela Cheia (F11)",icon=ft.icons.FULLSCREEN),
-                ft.PopupMenuItem(text= "Sobre o aplicativo",icon=ft.icons.INFO),
-                ft.PopupMenuItem(text= "Manual",icon=ft.icons.BOOK),
-                ft.PopupMenuItem(text= "Configurações",icon=ft.icons.SETTINGS),
+                self.full_screen_item_button,
+                self.app_info_button,
+                ft.PopupMenuItem(text= tr("manual"),icon=ft.icons.BOOK),
+                ft.PopupMenuItem(text= tr("settings"),icon=ft.icons.SETTINGS),
             ],
+            on_open=self.open_more_options_menu_update,
+            
+            
         )
 
         self.title_bar: ft.AppBar = ft.AppBar(
@@ -65,20 +105,20 @@ class MainPanel:
         # Creating Search Bar
 
         self.action_bar: ft.TextField = ft.TextField(
-            label="Digite aqui para adicionar ou pesquisar...",
+            label=tr("search_bar_tip"),
             border_radius=ft.border_radius.all(32)
         )
 
         self.add_button: ft.IconButton = ft.IconButton(
             icon=ft.icons.ADD,
             icon_size=self.__search_icon_size,
-            tooltip="Adicionar no sistema"
+            tooltip=tr("add_button_tip")
         )
         
         self.search_button: ft.IconButton = ft.IconButton(
             icon=ft.icons.SEARCH,
             icon_size=self.__search_icon_size,
-            tooltip="Procurar no sistema",
+            tooltip=tr("search_button_tip"),
         )
         
         self.buttons_row: ft.ResponsiveRow = ft.ResponsiveRow(
@@ -128,29 +168,29 @@ class MainPanel:
             #scrollable=True,
             tabs=[
                 ft.Tab(
-                    text="Clientes",
+                    text=tr("clients"),
                     icon=ft.icons.PEOPLE,
                     content=ft.Container(
                         content=ft.DataTable( columns=[ ft.DataColumn(ft.Text("Name")), ft.DataColumn(ft.Text("Age")), ], rows=[ ft.DataRow( cells=[ ft.DataCell(ft.Text("Alice")), ft.DataCell(ft.Text("25")), ] ), ft.DataRow( cells=[ ft.DataCell(ft.Text("Bob")), ft.DataCell(ft.Text("30")), ] ), ] ), alignment=ft.alignment.center
                     ),
                 ),
                 ft.Tab(
-                    text= "Fornecedores",
+                    text= tr("suppliers"),
                     icon=ft.icons.BUSINESS_ROUNDED,
                     content=ft.Text("This is Tab 2!!!"),
                 ),
                 ft.Tab(
-                    text="Stock de vestidos",
+                    text=tr("stock"),
                     icon=ft.icons.INBOX_OUTLINED,
                     content=ft.Text("This is Tab 3"),
                 ),
                 ft.Tab(
-                    text="Alugueis",
+                    text=tr("rentals"),
                     icon=ft.icons.CURRENCY_EXCHANGE_OUTLINED,
                     content=ft.Text("This is Tab 4"),
                 ),
                 ft.Tab(
-                    text="Analítica",
+                    text=tr("analytics"),
                     icon=ft.icons.DATA_THRESHOLDING_OUTLINED,
                     content=ft.Text("This is Tab 4"),
                 ),
