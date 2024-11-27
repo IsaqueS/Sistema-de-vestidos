@@ -51,7 +51,7 @@ class MainPanel(ViewTemplate):
             tr("title"),
             weight=ft.FontWeight.BOLD,
             overflow=ft.TextOverflow.ELLIPSIS,
-            size=28
+            size=self.app.title_size
         )
 
         self.manual_button: ft.TextButton = ft.TextButton(

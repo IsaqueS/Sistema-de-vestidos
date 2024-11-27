@@ -8,6 +8,7 @@ class App:
     def __init__(self) -> None:
         self.__window_title = tr("app_name")
         self.__last_poped_view: ft.View
+        self.title_size: int = 28
     
     def run(self) -> None:
         ft.app(self.main)
@@ -50,10 +51,8 @@ class App:
         self.page.update()
     
     def go_back(self) -> None:
-        #print(self.page.views[-1].route)
         self.__last_poped_view = self.page.views.pop()
         self.page.go(self.page.views[-1].route)
-        #print(self.page.views[-1].route)
 
     def global_keyboard_events(self, event: ft.KeyboardEvent) -> None:
         match event.key:
