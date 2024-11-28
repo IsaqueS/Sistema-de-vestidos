@@ -1,6 +1,7 @@
 from supplier_screen import supplier_data_base
 from Classes.suit import Suit
 
+
 input_text = '''1. Add product
 2. Remove product
 3. View product list
@@ -12,17 +13,13 @@ product_data_base = []
 def Product_menu():
     while True:
         print(input_text)
-
         action_input = input('Please select an option: ')
-
         option = None
-
         try:
             option = int(action_input)
         except ValueError:
             print("Invalid Option, ending execution")
             break
-
         if option == 4:
             break
         elif option == 1:
@@ -39,7 +36,6 @@ def Product_menu():
                     break
                 else:
                     print("This supplier is not on the supplier database, please include this supplier on the database before registering this product")
-
         elif option == 2:
             code = input('Please insert the code of the product you wish to remove: ')
             removed_product = None
@@ -50,10 +46,8 @@ def Product_menu():
                     break
             if removed_product == None:
                 print("This product is not on the database")
-
         elif option == 3:
             print("Products in the database: ")
-
             for c in product_data_base:
                 data = '''Code: {code}
     Description: {description}

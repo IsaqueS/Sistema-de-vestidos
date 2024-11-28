@@ -10,17 +10,13 @@ supplier_data_base = []
 def Supplier_menu():
     while True:
         print(imput_text)
-
         action_input = input('Please select an option: ')
-
         option = None
-
         try:
             option = int(action_input)
         except ValueError:
             print("Invalid Option, ending execution")
             break
-
         if option == 4:
             break
         elif option == 1:
@@ -42,10 +38,8 @@ def Supplier_menu():
                     break
             if removed_supplier == None:
                 print("This supplier is not on the database")
-
         elif option == 3:
             print("Suppliers in the database: ")
-
             for c in supplier_data_base:
                 data = '''Name: {name}
     Number: {number}

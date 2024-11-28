@@ -1,9 +1,9 @@
 class TelaCliente:
 
     def __init__(self, controlador):
-        self.__controlador = controlador
+        self.__controlador_cliente = controlador
 
-    def le_escolha(self, mensagem: str = "", inteiros_validos: [] = None):
+    def le_numero_inteiro(self, mensagem: str = "", inteiros_validos: [] = None):
         while True:
             valor_lido = input(mensagem)
             try:
