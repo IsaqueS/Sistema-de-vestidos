@@ -1,24 +1,28 @@
 import datetime
-from .Controladores import client_control
 
-
+from ..Classes.client import Client
 input_text = '''1. Add client
 2. Remove client
 3. View client list
 4. Return'''
 
 data_base = []
-
 def Client_menu():
+
+
     while True:
         print(input_text)
+
         action_input = input("Select you action: ")
+
         option = None
+
         try:
             option = int(action_input)
         except ValueError:
             print("Invalid Option, ending execution")
             break
+
         if option == 4:
             break
         elif option == 1:
@@ -39,6 +43,7 @@ def Client_menu():
                     break
             if removed_client == None:
                 print("This name does not exist on the data base")
+
         elif option == 3:
             print("Clients on the data base: ")
             for c in data_base:

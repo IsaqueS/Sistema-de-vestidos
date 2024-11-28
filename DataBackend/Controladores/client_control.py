@@ -2,11 +2,11 @@ from ..Classes.client import Client
 from ..Telas.tela_cliente import TelaCliente
 import datetime
 
-def ControladorCliente():
+clientes = []
+class ControladorCliente():
 
     def __init__(self):
         self.__tela_cliente = TelaCliente(self)
-        self.__clientes = []
 
     def inicia_tela_cliente(self):
         self.abre_tela_cliente()
@@ -24,17 +24,17 @@ def ControladorCliente():
     def remove_cliente(self):
         nome = input("Insira o nome do cliente que deseja remover: ")
         removed_client = None
-        for i in range(len(self.__clientes)):
-            client = self.__clientes[i]
+        for i in range(len(clientes)):
+            client = clientes[i]
             if client.name == nome:
-                removed_client = self.__clientes.pop(i)
+                removed_client = clientes.pop(i)
                 break
         if removed_client == None:
             print("Por favor insira um cliente que já esteja cadastrado.")
 
     def exibe_cliente(self):
         print("Clientes cadastrados: ")
-        for c in self.__clientes:
+        for c in clientes:
             data = '''Nome: {name}
         Numero: {number}
         Email: {email}

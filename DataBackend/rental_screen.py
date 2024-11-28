@@ -1,5 +1,5 @@
 import datetime
-from .Classes.rental import Rental
+from .rental import Rental
 from .client_screen import data_base
 from .product_screen import product_data_base
 

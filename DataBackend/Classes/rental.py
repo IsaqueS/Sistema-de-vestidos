@@ -5,7 +5,6 @@ from .client import Client
 from random import randint
 
 
-
 class Rental:
 
     def __init__(self, date: datetime, wait_time: datetime, products: list, client: Client) -> None:
@@ -39,7 +38,7 @@ class Rental:
     @property
     def wait_time(self) -> datetime:
         return self.__wait_time
-    
+
     @wait_time.setter
     def wait_time(self, wait_time: datetime) -> None:
         #if isinstance(wait_time, datetime):
@@ -48,8 +47,8 @@ class Rental:
     @property
     def products(self) -> list:
         return self.__products
-    @property
 
+    @property
     def add_product(self, product: Suit) -> None:
         if isinstance(product,Suit):
             self.__products.append(product)

@@ -11,6 +11,7 @@ class Person(ABC):
         self.__email = None
         if isinstance(email, str):
             self.__email = email
+
     @property
     def name(self) -> str:
         return self.__name
@@ -19,6 +20,7 @@ class Person(ABC):
     def name(self, name: str) -> None:
         if isinstance(name, str):
             self.__name = name
+
     @property
     def number(self) -> int:
         return self.__number
@@ -27,6 +29,7 @@ class Person(ABC):
     def number(self, number: int):
         if isinstance(number, int):
             self.__number = number
+
     @property
     def email(self) -> str:
         return self.__email

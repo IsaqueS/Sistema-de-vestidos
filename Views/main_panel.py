@@ -88,7 +88,7 @@ class MainPanel(ViewTemplate):
             items=[
                 self.full_screen_item_button,
                 self.app_info_button,
-                ft.PopupMenuItem(text= tr("manual"),icon=ft.icons.BOOK, on_click=self.app.go_to_manual),
+                ft.PopupMenuItem(text= tr("manual"),icon=ft.icons.BOOK),
                 ft.PopupMenuItem(text= tr("settings"),icon=ft.icons.SETTINGS),
             ],
             on_open=self.open_more_options_menu_update,
