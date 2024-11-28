@@ -1,5 +1,5 @@
-from Classes.client import Client
-from Telas.tela_cliente import TelaCliente
+from ..Classes.client import Client
+from ..Telas.tela_cliente import TelaCliente
 import datetime
 
 def ControladorCliente():
