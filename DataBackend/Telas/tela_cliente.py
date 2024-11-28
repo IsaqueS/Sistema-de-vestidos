@@ -14,13 +14,13 @@ class TelaCliente:
             except ValueError:
                 print("Por favor digite uma opção válida")
                 if inteiros_validos:
-                    print("Valores válidos: ", inteiros_validos)
+                    print("Opções válidos: ", inteiros_validos)
 
     def mostra_opcoes(self):
         print("----|Menu de Clientes|----")
         print("1 - Incluir cliente")
-        print("2 - Remover")
-        print("3 - Listar")
-        print("4 - Voltar")
-        opcao = self.le_escolha("Escolha uma opção: ", [1, 2, 3, 4])
+        print("2 - Remover clientes")
+        print("3 - Listar clientes")
+        print("4 - Voltar clientes")
+        opcao = self.le_numero_inteiro("Escolha uma opção: ", [1, 2, 3, 4])
         return opcao
