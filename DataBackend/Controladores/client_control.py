@@ -3,7 +3,7 @@ from ..Telas.tela_cliente import TelaCliente
 import datetime
 
 clientes = []
-class ControladorCliente():
+class ControladorCliente:
 
     def __init__(self):
         self.__tela_cliente = TelaCliente(self)
@@ -47,12 +47,13 @@ class ControladorCliente():
             print(data)
 
 def voltar(self):
+        #alterar para que ao invés de encerrar o programa o método retorne ao menu principal
         exit(0)
 
-        def abre_tela_cliente(self):
-            switcher = {1: self.inclui_cliente, 2: self.remove_cliente, 3: self.exibe_cliente, 
-                        4: self.voltar}
-            while True:
-                opcao = self.__tela_cliente.mostra_opcoes()
-                opcao_escolhida = switcher(opcao)
-                opcao_escolhida()
+def abre_tela_cliente(self):
+    switcher = {1: self.inclui_cliente, 2: self.remove_cliente, 3: self.exibe_cliente, 
+                4: self.voltar}
+    while True:
+        opcao = self.__tela_cliente()
+        opcao_escolhida = switcher(opcao)
+        opcao_escolhida()

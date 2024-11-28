@@ -1,0 +1,4 @@
+from client_control import ControladorCliente
+from rental_control import ControladorAluguel
+from suit_control import ControladorProduto
+from supplier_control import ControladorFornecedor
