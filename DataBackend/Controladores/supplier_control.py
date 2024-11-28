@@ -3,7 +3,7 @@ from ..Telas.tela_fornecedor import TelaFornecedor
 
 
 fornecedores = []
-class ControladorFornecedor():
+class ControladorFornecedor:
 
     def __init__(self):
         self.__tela_fornecedor = TelaFornecedor(self)
@@ -36,11 +36,13 @@ class ControladorFornecedor():
     def exibe_fornecedores(self):
         print("Fornecedores cadastrados: ")
         for c in fornecedores:
-            data = '''Code: {rent_code}
-    Date: {date}
-    Wait_time: {wait_time}
-    Products: {products}
-    Client: {client}'''.format(rent_code=d.rent_code, date=d.date, wait_time=d.wait_time, products=d.products, client=d.client)
+            data = '''Nome: {name}
+    Numero: {number}
+    E-mail: {email}
+    Contato: {contact}
+    CNPJ: {cnpj}
+    Endereço: {address}
+    Website: {website}'''.format(name = c.name,number = c.number, email = c.email, contact = c.contact, cnpj = c.cnpj, address = c.address, website = c.website)
             print(data)
 
     def voltar(self):

@@ -3,7 +3,7 @@ from ..Telas.tela_cliente import TelaCliente
 import datetime
 
 clientes = []
-class ControladorCliente():
+class ControladorCliente:
 
     def __init__(self):
         self.__tela_cliente = TelaCliente(self)
