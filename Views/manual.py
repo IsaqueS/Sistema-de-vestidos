@@ -30,11 +30,12 @@ class Manual(ViewTemplate):
         )
 
         self.menu_bar_left: ft.NavigationRail = ft.NavigationRail(
-            expand=True,
+            #expand=True,
             leading=ft.Text(tr("Topicos"), size=20, weight=ft.FontWeight.BOLD),
-            min_width=100,
+            # min_width=100,
             bgcolor=ft.colors.BLUE, #For debug only
-            width=120,
+            width=100,
+            
 
             destinations=[
             ft.NavigationRailDestination(
@@ -53,8 +54,17 @@ class Manual(ViewTemplate):
         ]
         )
 
+        row: ft.Row = ft.Row(
+            [
+                self.menu_bar_left,
+                ft.VerticalDivider(),
+                ft.Column([ ft.Text("Body!")], alignment=ft.MainAxisAlignment.START, expand=True),
+            ],
+            expand=True,
+        )
+
+
         self.view.controls.append(self.menu_bar_up)
-        self.view.controls.append(self.menu_bar_left)
-        self.view.controls.append(ft.Text("Fazer texto"))
+        self.view.controls.append(row)
         
         return self.view
