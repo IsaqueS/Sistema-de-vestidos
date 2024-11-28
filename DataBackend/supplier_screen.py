@@ -1,4 +1,4 @@
-from Classes.supplier import Supplier
+from .Classes.supplier import Supplier
 
 imput_text = '''1. Add supplier
 2. Remove supplier

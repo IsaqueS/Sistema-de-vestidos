@@ -1,5 +1,5 @@
-from supplier_screen import supplier_data_base
-from Classes.suit import Suit
+from .supplier_screen import supplier_data_base
+from .Classes.suit import Suit
 
 input_text = '''1. Add product
 2. Remove product
