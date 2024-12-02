@@ -6,7 +6,7 @@ clientes = []
 class ClientControl:
 
     def __init__(self):
-        self.__tela_cliente = ClientMenu(self)
+        self.__client_screen = ClientMenu(self)
 
     def inicia_tela_cliente(self):
         self.abre_tela_cliente()
@@ -54,6 +54,6 @@ def abre_tela_cliente(self):
     switcher = {1: self.inclui_cliente, 2: self.remove_cliente, 3: self.exibe_cliente, 
                 4: self.voltar}
     while True:
-        opcao = self.__tela_cliente()
+        opcao = self.__client_screen.show_options()
         opcao_escolhida = switcher(opcao)
         opcao_escolhida()

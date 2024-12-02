@@ -3,24 +3,24 @@ class ClientMenu:
     def __init__(self, controlador):
         self.__controlador_cliente = controlador
 
-    def le_numero_inteiro(self, mensagem: str = "", inteiros_validos = [1, 2, 3, 4]):
+    def read_integer(self, message: str = "", valid_integer = []):
         while True:
-            valor_lido = input(mensagem)
+            read_value = input(message)
             try:
-                inteiro = int(valor_lido)
-                if inteiros_validos and inteiro not in inteiros_validos:
+                inteiro = int(read_value)
+                if valid_integer and inteiro not in valid_integer:
                     raise ValueError
                 return inteiro
             except ValueError:
                 print("Por favor digite uma opção válida")
-                if inteiros_validos:
-                    print("Opções válidos: ", inteiros_validos)
+                if valid_integer:
+                    print("Opções válidos: ", valid_integer)
 
-    def mostra_opcoes(self):
+    def show_options(self):
         print("----|Menu de Clientes|----")
         print("1 - Incluir cliente")
         print("2 - Remover clientes")
         print("3 - Listar clientes")
         print("4 - Voltar clientes")
-        opcao = self.le_numero_inteiro("Escolha uma opção: ", [1, 2, 3, 4])
+        opcao = self.read_integer("Escolha uma opção: ", [1, 2, 3, 4])
         return opcao
