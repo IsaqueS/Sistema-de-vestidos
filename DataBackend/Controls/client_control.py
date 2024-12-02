@@ -1,12 +1,12 @@
 from ..Classes.client import Client
-from ..Telas.tela_cliente import TelaCliente
+from ..Screens.client_screen import ClientMenu
 import datetime
 
 clientes = []
-class ControladorCliente:
+class ClientControl:
 
     def __init__(self):
-        self.__tela_cliente = TelaCliente(self)
+        self.__tela_cliente = ClientMenu(self)
 
     def inicia_tela_cliente(self):
         self.abre_tela_cliente()

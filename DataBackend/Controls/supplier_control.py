@@ -1,12 +1,12 @@
 from ..Classes.supplier import Supplier
-from ..Telas.tela_fornecedor import TelaFornecedor
+from ..Screens.suplier_screen import SupplierMenu
 
 
 fornecedores = []
-class ControladorFornecedor:
+class SupplierControl:
 
     def __init__(self):
-        self.__tela_fornecedor = TelaFornecedor(self)
+        self.__tela_fornecedor = SupplierMenu(self)
         
     def inicia(self):
         self.abre_tela_fornecedor()

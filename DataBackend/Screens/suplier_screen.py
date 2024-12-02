@@ -1,9 +1,9 @@
-class TelaCliente:
+class SupplierMenu:
 
     def __init__(self, controlador):
-        self.__controlador_cliente = controlador
+        self.__controlador_fornecedor = controlador
 
-    def le_numero_inteiro(self, mensagem: str = "", inteiros_validos: [] = None):
+    def le_numero_inteiro(self, mensagem: str = "", inteiros_validos = [1, 2, 3, 4]):
         while True:
             valor_lido = input(mensagem)
             try:
@@ -17,10 +17,10 @@ class TelaCliente:
                     print("Opções válidos: ", inteiros_validos)
 
     def mostra_opcoes(self):
-        print("----|Menu de Clientes|----")
-        print("1 - Incluir cliente")
-        print("2 - Remover clientes")
-        print("3 - Listar clientes")
-        print("4 - Voltar clientes")
+        print("----|Menu de Fornecedores|----")
+        print("1 - Incluir fornecedores")
+        print("2 - Remover fornecedores")
+        print("3 - Listar fornecedores")
+        print("4 - Voltar")
         opcao = self.le_numero_inteiro("Escolha uma opção: ", [1, 2, 3, 4])
         return opcao

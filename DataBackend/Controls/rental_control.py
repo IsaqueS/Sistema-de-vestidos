@@ -2,13 +2,13 @@ from ..Classes.rental import Rental
 from client_control import clientes
 import datetime
 from suit_control import suits
-from ..Telas.tela_aluguel import TelaAluguel
+from ..Screens.rental_screen import RentalMenu
 
 alugueis = []
-class ControladorAluguel:
+class RentalControl:
 
     def __init__(self):
-        self.__tela_aluguel = TelaAluguel(self)
+        self.__tela_aluguel = RentalMenu(self)
 
     def inicia(self):
         self.abre_tela_aluguel()

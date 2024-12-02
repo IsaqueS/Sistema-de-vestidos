@@ -1,7 +1,7 @@
-from DataBackend import client_screen
-from DataBackend import rental_screen
-from DataBackend import supplier_screen
-from DataBackend import product_screen
+from DataBackend.Controls import client_control
+from DataBackend.Controls import rental_control
+from DataBackend.Controls import supplier_control
+from DataBackend.Controls import suit_control
 
 input_text = '''1. Clients
 2. Suppliers
@@ -27,10 +27,10 @@ while True:
         print('Goodbye!')
         break
     elif option == 1:
-        client_screen.Client_menu()
+        client_control.ClientControl()
     elif option == 2:
-        supplier_screen.Supplier_menu()
+        supplier_control.SupplierControl()
     elif option == 3:
-        product_screen.Product_menu()
+        suit_control.SuitControl()
     elif option == 4:
-        rental_screen.Rental_menu()
+        rental_control.RentalControl()

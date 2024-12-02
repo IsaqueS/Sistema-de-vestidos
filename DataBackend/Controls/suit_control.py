@@ -1,13 +1,13 @@
 from ..Classes.suit import Suit
 from supplier_control import fornecedores
-from ..Telas.tela_produto import TelaProduto
+from ..Screens.product_screen import ProductMenu
 
 suits = []
 
-class ControladorProduto:
+class SuitControl:
 
     def __init__(self):
-        self.__tela_produto = TelaProduto(self)
+        self.__tela_produto = ProductMenu(self)
     
 
     def inicia(self):
