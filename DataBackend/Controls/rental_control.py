@@ -1,46 +1,46 @@
 from ..Classes.rental import Rental
-from client_control import clientes
+from client_control import clients
 import datetime
 from suit_control import suits
 from ..Screens.rental_screen import RentalMenu
 
-alugueis = []
+rentals = []
 class RentalControl:
 
     def __init__(self):
-        self.__tela_aluguel = RentalMenu(self)
+        self.__rental_screen = RentalMenu(self)
 
-    def inicia(self):
-        self.abre_tela_aluguel()
+    def start_rental_screen(self):
+        self.open_rental_screen()
 
-    def inclui_aluguel(self):
-            data = datetime.datetime.now()
+    def add_rental(self):
+            date = datetime.datetime.now()
             print('Insira as seguintes informações')
-            tempo_de_espera = datetime.datetime(int(input("Ano de devolução do produto: ")), int(input("Mês de devolução do produto: ")), int(input("Dia de devolução do produto: ")))
-            produtos = []
-            cliente = input("Insira o nome do cliente: ")
-            for i in range(len(clientes)):
-                check_client = clientes[i]
-                if cliente == check_client.name:
-                    alugueis.append(Rental(data, tempo_de_espera, produtos, cliente))
+            wait_time = datetime.datetime(int(input("Ano de devolução do produto: ")), int(input("Mês de devolução do produto: ")), int(input("Dia de devolução do produto: ")))
+            products = []
+            client = input("Insira o nome do cliente: ")
+            for i in range(len(clients)):
+                check_client = clients[i]
+                if client == check_client.name:
+                    rentals.append(Rental(date, wait_time, products, client))
                     break
                 else:
                     print("Cliente não cadastrado, cadastre o cliente e tente novamente.")
 
-    def remove_aluguel(self):
+    def remove_rental(self):
             codigo_removido = input('Insira código do aluguel')
-            for c in range(len(alugueis)):
-                if codigo_removido == alugueis[c].rent_code:
-                    alugueis.pop(c)
+            for c in range(len(rentals)):
+                if codigo_removido == rentals[c].rent_code:
+                    rentals.pop(c)
                     break
                 else:
                     print("Não há aluguel com esse código")
                     break
 
-    def exibe_alugueis(self):
+    def show_rentals(self):
             print("Alugueis cadastrados: ")
 
-            for d in alugueis:
+            for d in rentals:
                 data = '''Código: {rent_code}
     Data: {date}
     Tempo de espera: {wait_time}
@@ -48,14 +48,14 @@ class RentalControl:
     Cliente: {client}'''.format(rent_code=d.rent_code, date=d.date, wait_time=d.wait_time, products=d.products, client=d.client)
                 print(data)
 
-    def voltar(self):
+    def back(self):
         #alterar para que ao invés de encerrar o programa o método retorne ao menu principal
         exit(0)
 
-    def abre_tela_aluguel(self):
-        switcher = {1: self.inclui_aluguel, 2: self.remove_aluguel, 3: self.exibe_alugueis, 
-                4: self.voltar}
+    def open_rental_screen(self):
+        switcher = {1: self.add_rental, 2: self.remove_rental, 3: self.show_rentals, 
+                4: self.back}
         while True:
-            opcao = self.__tela_produto.mostra_opcoes()
-            opcao_escolhida = switcher[opcao]
-            opcao_escolhida()
+            option = self.__rental_screen.show_options()
+            chosen_option = switcher[option]
+            chosen_option()

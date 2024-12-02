@@ -1,26 +1,26 @@
 class ProductMenu:
 
-    def __init__(self, controlador):
-        self.__controlador = controlador
+    def __init__(self, control):
+        self.__product_control = control
     
-    def le_numero_inteiro(self, mensagem: str = "", inteiros_validos = [1, 2, 3, 4]):
+    def read_integer(self, message: str = "", valid_integer = []):
         while True:
-            valor_lido = input(mensagem)
+            read_value = input(message)
             try:
-                inteiro = int(valor_lido)
-                if inteiros_validos and inteiro not in inteiros_validos:
+                integer = int(read_value)
+                if valid_integer and integer not in valid_integer:
                     raise ValueError
-                return inteiro
+                return integer
             except ValueError:
                 print("Por favor digite uma opção válida")
-                if inteiros_validos:
-                    print("Valores válidos: ", inteiros_validos)
+                if valid_integer:
+                    print("Valores válidos: ", valid_integer)
 
-    def mostra_opcoes(self):
+    def show_options(self):
         print("----|Menu de Produtos|----")
         print("1 - Incluir produtos")
         print("2 - Remover produtos")
         print("3 - Listar produtos  ")
         print("4 - Voltar")
-        opcao = self.le_numero_inteiro("Escolha uma opção: ", [1, 2, 3, 4])
-        return opcao
+        option = self.read_integer("Escolha uma opção: ", [1, 2, 3, 4])
+        return option
