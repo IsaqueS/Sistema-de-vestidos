@@ -1,5 +1,6 @@
 import flet as ft
 from Translations.translation_server import tr, translate
+from typing import Dict
 
 from Views import *
 
@@ -24,7 +25,7 @@ class App:
     
     def load_views(self) -> None:
         
-        self.views: dict[str:ViewTemplate] = {
+        self.views: Dict[str,ViewTemplate] = {
             "MainView": MainPanel(self),
             "Manual": Manual(self),
         }

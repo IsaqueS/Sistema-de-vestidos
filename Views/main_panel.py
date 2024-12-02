@@ -1,7 +1,7 @@
-import math
 import flet as ft
 from Translations.translation_server import tr
 from Views.view_template import ViewTemplate
+from .MainPanelTabs.client_tab import ClientTab
 
 from typing import TYPE_CHECKING
 
@@ -32,10 +32,10 @@ class MainPanel(ViewTemplate):
     
     def update_fullscreen_button(self) -> None:
         if not self.app.page.window.full_screen:
-            self.full_screen_item_button.icon = ft.icons.FULLSCREEN
+            self.full_screen_item_button.icon = ft.Icons.FULLSCREEN
             self.full_screen_item_button.text = tr("fullscreen_button")
         else:
-            self.full_screen_item_button.icon = ft.icons.FULLSCREEN_EXIT
+            self.full_screen_item_button.icon = ft.Icons.FULLSCREEN_EXIT
             self.full_screen_item_button.text = tr("exit_fullscreen_button")
     
     def open_more_options_menu_update(self, args: ft.ControlEvent) -> None:    
@@ -56,30 +56,30 @@ class MainPanel(ViewTemplate):
         )
 
         self.manual_button: ft.TextButton = ft.TextButton(
-            icon=ft.icons.BOOK,
+            icon=ft.Icons.BOOK,
             text=tr("manual"),
             on_click = self.app.go_to_manual
         )
 
         self.backup_button: ft.TextButton = ft.TextButton(
-            icon=ft.icons.FOLDER_SHARED,
+            icon=ft.Icons.FOLDER_SHARED,
             text=tr("manage_backups")
         )
 
         self.settings_button: ft.Icon = ft.Icon(
-            name=ft.icons.MORE_VERT,
+            name=ft.Icons.MORE_VERT,
             tooltip=tr("more_options")
         )
 
         self.full_screen_item_button: ft.PopupMenuItem = ft.PopupMenuItem(
                     text= tr("fullscreen_button"),
-                    icon=ft.icons.FULLSCREEN,
+                    icon=ft.Icons.FULLSCREEN,
                     on_click=self.change_to_full_screen
                 )
         
         self.app_info_button: ft.PopupMenuItem = ft.PopupMenuItem(
             text= tr("app_info"),
-            icon=ft.icons.INFO,
+            icon=ft.Icons.INFO,
             on_click= lambda x: print("Info Button was pressed, Functionalty needs to be done!"),
         )
 
@@ -88,8 +88,8 @@ class MainPanel(ViewTemplate):
             items=[
                 self.full_screen_item_button,
                 self.app_info_button,
-                ft.PopupMenuItem(text= tr("manual"),icon=ft.icons.BOOK),
-                ft.PopupMenuItem(text= tr("settings"),icon=ft.icons.SETTINGS),
+                ft.PopupMenuItem(text= tr("manual"),icon=ft.Icons.BOOK),
+                ft.PopupMenuItem(text= tr("settings"),icon=ft.Icons.SETTINGS),
             ],
             on_open=self.open_more_options_menu_update,
             
@@ -118,13 +118,13 @@ class MainPanel(ViewTemplate):
         )
 
         self.add_button: ft.IconButton = ft.IconButton(
-            icon=ft.icons.ADD,
+            icon=ft.Icons.ADD,
             icon_size=self.__search_icon_size,
             tooltip=tr("add_button_tip")
         )
         
         self.search_button: ft.IconButton = ft.IconButton(
-            icon=ft.icons.SEARCH,
+            icon=ft.Icons.SEARCH,
             icon_size=self.__search_icon_size,
             tooltip=tr("search_button_tip"),
         )
@@ -168,6 +168,9 @@ class MainPanel(ViewTemplate):
 
         # Creating Tabs
 
+        self.client_tab = ClientTab()
+
+
         self.categories_tab = ft.Tabs(
             selected_index=0,
             animation_duration=300,
@@ -175,35 +178,30 @@ class MainPanel(ViewTemplate):
             #adaptive=True,
             #scrollable=True,
             tabs=[
-                ft.Tab(
-                    text=tr("clients"),
-                    icon=ft.icons.PEOPLE,
-                    content=ft.Container(
-                        content=ft.DataTable( columns=[ ft.DataColumn(ft.Text("Name")), ft.DataColumn(ft.Text("Age")), ], rows=[ ft.DataRow( cells=[ ft.DataCell(ft.Text("Alice")), ft.DataCell(ft.Text("25")), ] ), ft.DataRow( cells=[ ft.DataCell(ft.Text("Bob")), ft.DataCell(ft.Text("30")), ] ), ] ), alignment=ft.alignment.center
-                    ),
-                ),
+                self.client_tab.tab,
                 ft.Tab(
                     text= tr("suppliers"),
-                    icon=ft.icons.BUSINESS_ROUNDED,
+                    icon=ft.Icons.BUSINESS_ROUNDED,
                     content=ft.Text("This is Tab 2!!!"),
                 ),
                 ft.Tab(
                     text=tr("stock"),
-                    icon=ft.icons.INBOX_OUTLINED,
+                    icon=ft.Icons.INBOX_OUTLINED,
                     content=ft.Text("This is Tab 3"),
                 ),
                 ft.Tab(
                     text=tr("rentals"),
-                    icon=ft.icons.CURRENCY_EXCHANGE_OUTLINED,
+                    icon=ft.Icons.CURRENCY_EXCHANGE_OUTLINED,
                     content=ft.Text("This is Tab 4"),
                 ),
                 ft.Tab(
                     text=tr("analytics"),
-                    icon=ft.icons.DATA_THRESHOLDING_OUTLINED,
+                    icon=ft.Icons.DATA_THRESHOLDING_OUTLINED,
                     content=ft.Text("This is Tab 4"),
+                    
                 ),
             ],
-            expand=1,
+            expand=True,
         )
 
         self.gradient_container: ft.Container = ft.Container(
@@ -232,6 +230,7 @@ class MainPanel(ViewTemplate):
         self.view.controls.append(self.title_bar)
         self.view.controls.append(self.gradient_container)
         self.view.controls.append(self.categories_tab)
+        
 
         return self.view
         

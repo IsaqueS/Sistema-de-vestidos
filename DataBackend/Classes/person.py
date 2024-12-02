@@ -1,16 +1,21 @@
 from abc import ABC, abstractmethod
 class Person(ABC):
+
+    name: str
+    number: int
+    email: str
+
     @abstractmethod
     def __init__(self, name: str, number: int, email: str) -> None:
         self.__name = None
         if isinstance(name, str):
-            self.__name = name
+            self.__name: str = name
         self.__number = None
         if isinstance(number, int):
-            self.__number = number
+            self.__number: int = number
         self.__email = None
         if isinstance(email, str):
-            self.__email = email
+            self.__email: str = email
 
     @property
     def name(self) -> str:

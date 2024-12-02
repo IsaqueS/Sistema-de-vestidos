@@ -1,20 +1,25 @@
-import datetime
+from datetime import datetime
 from .person import Person
 
 
 class Client(Person):
+
+    instagram: str
+    cpf: int
+    birth_date: datetime
+
     def __init__(self, name: str, number: int, email: str, instagram: str, cpf: int, birth_date: datetime) -> None:
         super().__init__(name, number, email)
         if isinstance(instagram, str):
-            self.__instagram = instagram
+            self.__instagram: str = instagram
         self.__cpf = None
         if isinstance(cpf, int):
-            self.__cpf = cpf
+            self.__cpf: int = cpf
         self.__birth_date = None
-        if isinstance(birth_date, datetime.datetime):
-            self.__birth_date = birth_date
+        if isinstance(birth_date, datetime):
+            self.__birth_date: datetime = birth_date
 
-        self.__registration_date = datetime.datetime.now()
+        self.__registration_date: datetime = datetime.now()
 
     @property
     def instagram(self) -> str:
