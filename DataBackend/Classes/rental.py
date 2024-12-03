@@ -7,8 +7,13 @@ from random import randint
 
 class Rental:
 
+    date:datetime.datetime
+    wait_time:datetime.datetime
+    products:list
+    client:Client
+
     def __init__(self, date: datetime, wait_time: datetime, products: list, client: Client) -> None:
-        self.__rent_code = randint(0, 2000000)
+        self.__rent_code = randint(0, 1000000000)
         #self.__date = None
         #if isinstance(date, datetime):
         self.__date = date

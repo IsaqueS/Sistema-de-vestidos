@@ -30,6 +30,8 @@ class App:
             "Manual": Manual(self),
         }
 
+        
+
         self.page.views.append(self.views["MainView"].view)
 
         

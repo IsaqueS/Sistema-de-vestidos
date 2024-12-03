@@ -1,12 +1,24 @@
 from datetime import datetime
 from .person import Person
+from enum import Enum
 
 
 class Client(Person):
 
-    instagram: str
     cpf: int
     birth_date: datetime
+    instagram: str
+
+    ORDER: dict[str, int] = {
+        "name": 0,
+        "number": 1,
+        "cpf": 2,
+        "email": 3,
+        "birth_date": 4,
+        "instagram": 5,
+    }
+        
+
 
     def __init__(self, name: str, number: int, email: str, instagram: str, cpf: int, birth_date: datetime) -> None:
         super().__init__(name, number, email)

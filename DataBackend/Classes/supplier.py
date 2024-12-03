@@ -3,6 +3,21 @@ from .person import Person
 
 
 class Supplier(Person):
+
+    contact: str
+    cnpj: int
+    address: str
+    website: str
+
+    ORDER: dict[str, int] = {
+        "name": 0,
+        "number": 1,
+        "cnpj": 2,
+        "email": 3,
+        "contact": 4,
+        "website": 5,
+    }
+
     def __init__(self, name: str, number: int, email: str, contact: str, cnpj: int, address: str, website: str) -> None:
         super().__init__(name, number, email)
         self.__name = None

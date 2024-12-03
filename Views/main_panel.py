@@ -1,9 +1,12 @@
 import flet as ft
 from Translations.translation_server import tr
-from Views.view_template import ViewTemplate
-from .MainPanelTabs.client_tab import ClientTab
+from .MainPanelTabs.stock_tab import StockTab
+from .view_template import ViewTemplate
+from .MainPanelTabs.clients_tab import ClientsTab
+from .MainPanelTabs.supliers_tab import SupliersTab
+from .MainPanelTabs.rentals_tab import RentalsTab
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 
 if TYPE_CHECKING:
     from app import App
@@ -19,10 +22,6 @@ class MainPanel(ViewTemplate):
         )
 
         self.setup_view()
-
-    # @property
-    # def view(self) -> ft.View:
-    #     return self.__view
         
     def change_to_full_screen(self, args: ft.ControlEvent) -> None:
         self.app.page.window.full_screen = not self.app.page.window.full_screen
@@ -41,8 +40,6 @@ class MainPanel(ViewTemplate):
     def open_more_options_menu_update(self, args: ft.ControlEvent) -> None:    
         self.update_fullscreen_button()
         self.app.page.update()
-
-
 
     def setup_view(self) -> ft.View:
         super().setup_view()
@@ -168,7 +165,10 @@ class MainPanel(ViewTemplate):
 
         # Creating Tabs
 
-        self.client_tab = ClientTab()
+        self.client_tab = ClientsTab()
+        self.supliers_tab = SupliersTab()
+        self.stock_tab = StockTab()
+        self.rental_tab = RentalsTab()
 
 
         self.categories_tab = ft.Tabs(
@@ -176,28 +176,20 @@ class MainPanel(ViewTemplate):
             animation_duration=300,
             tab_alignment = ft.TabAlignment.CENTER,
             #adaptive=True,
-            #scrollable=True,
+            scrollable=True,
             tabs=[
-                self.client_tab.tab,
-                ft.Tab(
-                    text= tr("suppliers"),
-                    icon=ft.Icons.BUSINESS_ROUNDED,
-                    content=ft.Text("This is Tab 2!!!"),
-                ),
-                ft.Tab(
-                    text=tr("stock"),
-                    icon=ft.Icons.INBOX_OUTLINED,
-                    content=ft.Text("This is Tab 3"),
-                ),
-                ft.Tab(
-                    text=tr("rentals"),
-                    icon=ft.Icons.CURRENCY_EXCHANGE_OUTLINED,
-                    content=ft.Text("This is Tab 4"),
-                ),
+                self.client_tab,
+                self.supliers_tab,
+                self.stock_tab,
+                self.rental_tab,
                 ft.Tab(
                     text=tr("analytics"),
                     icon=ft.Icons.DATA_THRESHOLDING_OUTLINED,
-                    content=ft.Text("This is Tab 4"),
+                    content=ft.Button(
+                        text="Copy all clients to clipboard",
+                        icon=ft.icons.CONTENT_COPY_OUTLINED,
+                        on_click=lambda x: self.app.page.set_clipboard("\n".join(self.client_tab.get_all_names()))
+                    )
                     
                 ),
             ],
@@ -233,6 +225,5 @@ class MainPanel(ViewTemplate):
         
 
         return self.view
-        
 
         

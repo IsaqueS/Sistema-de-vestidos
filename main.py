@@ -9,5 +9,4 @@ if __name__ == "__main__":
     # translate.set_language("en")
     # print(translate.tr("settings"))
 
-    # print(App.__name__)
     main()

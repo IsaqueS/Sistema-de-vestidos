@@ -1,7 +1,7 @@
 key,en,pt
 app_name,Data Base (Place holder name),Banco de dados (Nome ainda a ser decidido)
 hello,Hello!,Oi!
-title,Title,Titulo
+title,Stock data base,Banco de Vestidos
 search_bar_tip,Start typing to search or to insert an new item...,Comece a digitar para pesquisar ou para inseir um item...
 search_button_tip,Search on database,Procurar no sistema
 add_button_tip,Add an new item,Adicionar um novo item
@@ -18,3 +18,23 @@ app_info,App info,Informações do aplicativo
 settings,Settings,Configurações
 more_options,More options,Mais opções
 exit_fullscreen_button,Exit fullscreen (F11),Sair da tela cheia (F11)
+name,Name,Nome
+number,Number,Numero
+cpf,CPF,CPF
+email,Email,Email
+birth_date,Birth date,Data de nacimento
+instagram,Instagram,Instagram
+cnpj,CNPJ,CNPJ
+contact,Contact,Contato
+website,Website,Website
+address,Address,Endereço
+code,Code,Codigo
+size,Size,Tamanho
+description,Description,Descrição
+purchase_price,Purchase price,Preço de compra
+selling_price,Selling price,Preço de venda
+supplier,Supplier,Fornecedor
+date,Date,Data
+client,Client,Cliente
+products,Products,Produtos
+wait_time,Wait time,Tempo de espera
