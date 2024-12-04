@@ -1,21 +1,27 @@
 from decimal import Decimal
 import inspect
-from typing import List
+from typing import TYPE_CHECKING, List
 from warnings import warn
 import flet as ft
 from DataBackend.Classes.client import Client
 from Translations.translation_server import tr
 from datetime import datetime
 
+if TYPE_CHECKING:
+    from app import App
+
 class TabDataTableBase(ft.Tab):    
-    def __init__(self, text_id: str, icon: ft.Icon,class_def) -> None:
+    def __init__(self, text_id: str, icon: ft.Icon, class_def, app) -> None:
         super().__init__()
         self.text_id: str = text_id
         self.text: str = tr(text_id)
         self.icon = icon
         self.class_def = class_def
         self.DATA_ORDER: list[str] = None
+        self.ANOTATIONS: dict
         self.selected_data: set = set()
+        self.add_view: ft.View = ft.View()
+        self.app: "App" = app
 
         self.data_columns: List[ft.DataColumn] = self.get_table_columns()
 
@@ -33,6 +39,10 @@ class TabDataTableBase(ft.Tab):
 
         self.content = self.table_container
 
+        self.build_add_view()
+        # print(self.add_view.controls)
+
+
     @staticmethod
     def __attr_format(attr) -> object:
         if isinstance(attr, datetime):
@@ -41,7 +51,53 @@ class TabDataTableBase(ft.Tab):
             return attr.name
         
         return attr
+    
+    def get_data(self) -> dict[str:str]:
+        data: dict = {}
+        for control in self.add_view.controls[0].controls:
+            if isinstance(control, ft.TextField) and isinstance(control.data, str):
+                data[control.data] = control.value
+        return data
+
+    def save_data(self, event) -> None:
+        pass       
+
+    def build_add_view(self) -> None:
+        self.add_view.horizontal_alignment = ft.CrossAxisAlignment.CENTER
         
+        controls: list = []
+
+        controls.append(
+            ft.Text(
+                value=self.text,
+                size=40,
+                theme_style=ft.TextThemeStyle.TITLE_LARGE,
+                text_align=ft.TextAlign.CENTER,
+                expand=True,
+            )
+        )
+
+        for name, class_type in self.ANOTATIONS.items():
+            controls.append(
+                ft.TextField(
+                    label=tr(name),
+                    data=name,
+                )
+            )
+        
+        controls.append(
+            ft.TextButton(
+                text=tr("Adicionar!"),
+                data=controls,
+                on_click=self.save_data
+            )
+        )
+
+        collumn = ft.Column(
+            controls=controls,
+        )
+
+        self.add_view.controls.append(collumn)
 
     def load_rows(self, obj_list: list[object]) -> list[ft.DataRow]:
         rows: list = []
@@ -73,6 +129,9 @@ class TabDataTableBase(ft.Tab):
 
         return rows
     
+    def delete_data(self) -> None:
+        raise NotImplementedError(f"Delete Data on {self} is not implemented!")
+
     def sorting_key(tab, value) -> int:
         assert isinstance(tab, TabDataTableBase), f"{tab} is not an 'TabDataTableBase'!"
         if hasattr(tab.class_def, "ORDER") and isinstance(tab.class_def.ORDER, dict):
@@ -113,8 +172,8 @@ class TabDataTableBase(ft.Tab):
                 )
             )
         
-
-        self.DATA_ORDER = list(annotations.keys())
+        self.ANOTATIONS = annotations
+        self.DATA_ORDER = tuple(annotations.keys())
         
         return data_columns
     

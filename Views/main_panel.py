@@ -1,5 +1,6 @@
 import flet as ft
 from Translations.translation_server import tr
+from Views.MainPanelTabs.tab_data_table_base import TabDataTableBase
 from .MainPanelTabs.stock_tab import StockTab
 from .view_template import ViewTemplate
 from .MainPanelTabs.clients_tab import ClientsTab
@@ -17,14 +18,25 @@ class MainPanel(ViewTemplate):
         
         self.__search_icon_size: int = 25
 
-        self.view: ft.View = ft.View(
-            route="/",
-        )
+        self.view.route = "/"
 
         self.setup_view()
     
-    def input(event) -> None:
-        print(event)
+    def input(self, event: ft.KeyboardEvent) -> None:
+        assert isinstance(event, ft.KeyboardEvent), f"{event} is not an ft.KeyboardEvent!"
+        if event.key == "Backspace" or event.key == "Delete":
+            tab: ft.Tab = self.categories_tab.tabs[self.categories_tab.selected_index]
+            if isinstance(tab, TabDataTableBase):
+                tab.delete_data()
+    
+    def add_view(self, event: ft.ControlEvent) -> None:
+        tab: ft.Tab = self.categories_tab.tabs[self.categories_tab.selected_index]
+        if isinstance(tab, TabDataTableBase):
+            if isinstance(event,ft.ControlEvent):
+                self.app.page.views.append(tab.add_view)
+                self.app.page.update()
+            else:
+                raise TypeError(f"Please make the event: {event}, an ft.ControlEvent!")
         
     def change_to_full_screen(self, args: ft.ControlEvent) -> None:
         self.app.page.window.full_screen = not self.app.page.window.full_screen
@@ -120,7 +132,8 @@ class MainPanel(ViewTemplate):
         self.add_button: ft.IconButton = ft.IconButton(
             icon=ft.Icons.ADD,
             icon_size=self.__search_icon_size,
-            tooltip=tr("add_button_tip")
+            tooltip=tr("add_button_tip"),
+            on_click=self.add_view,
         )
         
         self.search_button: ft.IconButton = ft.IconButton(
@@ -168,10 +181,10 @@ class MainPanel(ViewTemplate):
 
         # Creating Tabs
 
-        self.client_tab = ClientsTab()
-        self.supliers_tab = SupliersTab()
-        self.stock_tab = StockTab()
-        self.rental_tab = RentalsTab()
+        self.client_tab = ClientsTab(self.app)
+        self.supliers_tab = SupliersTab(self.app)
+        self.stock_tab = StockTab(self.app)
+        self.rental_tab = RentalsTab(self.app)
 
 
         self.categories_tab = ft.Tabs(

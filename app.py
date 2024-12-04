@@ -26,13 +26,12 @@ class App:
     
     def load_views(self) -> None:
         
-        self.views: Dict[str,ViewTemplate] = {
+        self.views: Dict[str, ViewTemplate] = {
             "MainView": MainPanel(self),
             "Manual": Manual(self),
         }
 
         
-
         self.page.views.append(self.views["MainView"].view)
 
         
@@ -64,13 +63,12 @@ class App:
                 self.page.window.full_screen = not self.page.window.full_screen
                 self.page.update()
             case _:
-                if hasattr(self.page.views[-1], self.__input_method_name) and callable(getattr(self.page.views[-1], self.__input_method_name)):
-                    input_func = getattr(self.page.views[-1])
+                if hasattr(self.page.views[-1], "ref") and hasattr(self.page.views[-1].ref, self.__input_method_name) and callable(getattr(self.page.views[-1].ref, self.__input_method_name)):
+                    input_func = getattr(self.page.views[-1].ref, self.__input_method_name)
                     input_func(event)
-                else:
-                    print("function does not exist :P")
-                    print(type(self.page.views[-1]))
-                    print(self.page.views[-1])
+                # else:
+                #     print("function does not exist :P")
+                #     print(type(self.page.views[-1].ref))
 
 
                 

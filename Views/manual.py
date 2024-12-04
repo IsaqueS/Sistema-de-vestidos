@@ -12,9 +12,7 @@ class Manual(ViewTemplate):
     def __init__(self, app) -> None:
         super().__init__(app)
 
-        self.view: ft.View = ft.View(
-            route="/manual",
-        )
+        self.view.route = "/manual"
 
         self.setup_view()
     

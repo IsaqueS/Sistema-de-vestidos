@@ -45,6 +45,7 @@ class ClientControl:
             client = clients[i]
             if client.name == name:
                 removed_client = clients.pop(i)
+                self.save()
                 break
         if removed_client == None:
             print("Por favor insira um cliente que já esteja cadastrado.")

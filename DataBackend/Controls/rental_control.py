@@ -54,6 +54,7 @@ class RentalControl:
             for c in range(len(rentals)):
                 if codigo_removido == rentals[c].rent_code:
                     rentals.pop(c)
+                    self.save()
                     break
                 else:
                     print("Não há aluguel com esse código")

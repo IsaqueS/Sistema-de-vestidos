@@ -41,10 +41,11 @@ class SupplierControl:
     def remove_supplier(self, name):
         # nome = input("Insira o nome do fornecedor que deseja remover: ")
         removed_client = None
-        for i in range(len(self.suppliers)):
-            client = self.suppliers[i]
+        for i in range(len(suppliers)):
+            client = suppliers[i]
             if client.name == name:
                 removed_client = suppliers.pop(i)
+                self.save()
                 break
         if removed_client == None:
             print("Por favor insira um cliente que já esteja cadastrado.")

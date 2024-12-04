@@ -49,10 +49,11 @@ class SuitControl:
     def remove_product(self, code):
         # code = input('Insira o código do produto que deseja remover: ')
         removed_product = None
-        for d in range(len(self.suits)):
-            suit: Suit = self.suits[d]
+        for d in range(len(suits)):
+            suit: Suit = suits[d]
             if suit.code == code:
                 removed_product = suits.pop(d)
+                self.save()
                 break
         if removed_product == None:
             print("Este produto não está cadastrado.")
