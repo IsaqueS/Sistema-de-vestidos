@@ -22,6 +22,9 @@ class MainPanel(ViewTemplate):
         )
 
         self.setup_view()
+    
+    def input(event) -> None:
+        print(event)
         
     def change_to_full_screen(self, args: ft.ControlEvent) -> None:
         self.app.page.window.full_screen = not self.app.page.window.full_screen
@@ -189,11 +192,11 @@ class MainPanel(ViewTemplate):
                         text="Copy all clients to clipboard",
                         icon=ft.icons.CONTENT_COPY_OUTLINED,
                         on_click=lambda x: self.app.page.set_clipboard("\n".join(self.client_tab.get_all_names()))
-                    )
-                    
+                    ),
                 ),
             ],
             expand=True,
+            
         )
 
         self.gradient_container: ft.Container = ft.Container(

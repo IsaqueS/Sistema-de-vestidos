@@ -10,6 +10,7 @@ class App:
         self.__window_title = tr("app_name")
         self.__last_poped_view: ft.View
         self.title_size: int = 28
+        self.__input_method_name: str = "input"
     
     def run(self) -> None:
         ft.app(self.main)
@@ -62,6 +63,15 @@ class App:
             case "F11":
                 self.page.window.full_screen = not self.page.window.full_screen
                 self.page.update()
+            case _:
+                if hasattr(self.page.views[-1], self.__input_method_name) and callable(getattr(self.page.views[-1], self.__input_method_name)):
+                    input_func = getattr(self.page.views[-1])
+                    input_func(event)
+                else:
+                    print("function does not exist :P")
+                    print(type(self.page.views[-1]))
+                    print(self.page.views[-1])
+
 
                 
 
